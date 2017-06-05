@@ -1,8 +1,13 @@
 var target = {};
-var handler = {};
+var handler = {
+    get (target, key) {
+        console.info(`Get on property"${key}"`);
+        return target[key];
+    }
+};
 var proxy = new Proxy(target, handler);
 proxy.a = 'b';
 
-console.log(target.a);
+console.log(proxy.a);
 
-console.log(proxy.c === undefined);
+console.log(proxy.b);
